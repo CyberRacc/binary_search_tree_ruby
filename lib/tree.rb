@@ -54,9 +54,19 @@ class Tree
     node if node.data == value
   end
 
-  def level_order(block)
+  def level_order(node = root, &block)
     # Traverse the tree in breadth-first level order and yield each node to the block
     # Implement as recursion
+    queue = [] # discovered nodes
 
+    return if node.nil?
+
+    queue << node
+    until queue.empty?
+      current = queue.shift
+      yield current if block_given?
+      queue << current.left_children unless current.left_children.nil?
+      queue << current.right_children unless current.right_children.nil?
+    end
   end
 end
