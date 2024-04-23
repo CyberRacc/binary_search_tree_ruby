@@ -35,7 +35,7 @@ class Tree
   end
 
   def pretty_print(node = root, prefix = '', is_left = true)
-    pretty_print(node.right_children, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right_children
+    pretty_print(node.right_children, "#{wprefix}#{is_left ? '│   ' : '    '}", false) if node.right_children
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left_children, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left_children
   end
@@ -50,12 +50,10 @@ class Tree
     elsif value > node.data
       node.right_children = insert(value, node.right_children)
     end
-
   end
 
   def delete(value, node = root)
     # Traverse the tree and delete the value
-
   end
 
   def find(value, node = root)
