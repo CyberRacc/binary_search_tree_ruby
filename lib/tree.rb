@@ -43,6 +43,14 @@ class Tree
   def insert(value, node = root)
     # Traverse the tree and insert the value
 
+    if node.nil?
+      node = Node.new(value)
+    elsif value < node.data
+      node.left_children = insert(value, node.left_children)
+    elsif value > node.data
+      node.right_children = insert(value, node.right_children)
+    end
+
   end
 
   def delete(value, node = root)
